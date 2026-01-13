@@ -192,10 +192,11 @@
         
         .flow-step {
             flex: 1;
-            min-width: 150px;
+            min-width: 120px;
+            max-width: 150px;
             background: white;
             border: 2px solid #000000;
-            padding: 20px;
+            padding: 15px 10px;
             text-align: center;
             position: relative;
             transition: all 0.3s;
@@ -224,6 +225,87 @@
         }
         
         .flow-step:hover .flow-step-number {
+            background: white;
+            color: #000000;
+            border: 2px solid #000000;
+        }
+        
+        /* Diamond shape for decision steps */
+        .flow-step-diamond {
+            flex: 1;
+            min-width: 200px;
+            max-width: 220px;
+            height: 160px;
+            position: relative;
+            margin: 0 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .flow-step-diamond::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 160px;
+            height: 160px;
+            background: white;
+            border: 2px solid #000000;
+            transform: translate(-50%, -50%) rotate(45deg);
+            transition: all 0.3s;
+            z-index: 1;
+        }
+        
+        .flow-step-diamond:hover::before {
+            background: #000000;
+            transform: translate(-50%, -50%) rotate(45deg) scale(1.05);
+        }
+        
+        .flow-step-diamond-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 10px;
+            transition: all 0.3s;
+            max-width: 110px;
+            font-size: 0.95em;
+        }
+        
+        .flow-step-diamond-content strong {
+            font-size: 1em;
+            display: block;
+            margin-bottom: 2px;
+            line-height: 1.1;
+        }
+        
+        .flow-step-diamond-content small {
+            font-size: 0.85em;
+            line-height: 1.2;
+        }
+        
+        .flow-step-diamond:hover .flow-step-diamond-content {
+            color: white;
+        }
+        
+        .flow-step-diamond .flow-step-number {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #000000;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            z-index: 3;
+        }
+        
+        .flow-step-diamond:hover .flow-step-number {
             background: white;
             color: #000000;
             border: 2px solid #000000;
@@ -393,9 +475,17 @@
         <div class="framework-diagram">
             <h2 class="diagram-title">Framework Hierarchy</h2>
             
-            <!-- Issue Sources at the top -->
+            <!-- Level 1: ERM Program (moved to top) -->
+            <div class="erm-header" style="margin-bottom: 20px;">
+                Block Enterprise Risk Management Issue Management Program
+                <div style="font-size: 0.7em; margin-top: 10px; font-weight: normal;">Overarching Enterprise Guidance & Requirements</div>
+            </div>
+            
+            <div class="arrow-down">⬇</div>
+            
+            <!-- Issue Sources (moved below ERM) -->
             <div style="background: #f9f9f9; border: 1px solid #e0e0e0; padding: 20px; margin-bottom: 20px;">
-                <h3 style="text-align: center; color: #000000; margin-bottom: 15px; font-size: 1.1em; text-transform: uppercase; letter-spacing: 0.5px;">All Issues Enter From:</h3>
+                <h3 style="text-align: center; color: #000000; margin-bottom: 15px; font-size: 1.1em; text-transform: uppercase; letter-spacing: 0.5px;">All Compliance-impacting Issues</h3>
                 <div class="sources-container">
                     <div class="source-box">Regulatory</div>
                     <div class="source-box">Internal Audit</div>
@@ -405,16 +495,8 @@
                     <div class="source-box">Other Activities</div>
                 </div>
                 <p style="text-align: center; color: #666666; font-size: 0.85em; margin-top: 15px; font-style: italic;">
-                    Every Compliance-impacting issue, regardless of source, is governed by the Framework
+                    Regardless of source, all Compliance-impacting issues are governed by the CIMO Framework
                 </p>
-            </div>
-            
-            <div class="arrow-down">⬇</div>
-            
-            <!-- Level 1: ERM Program -->
-            <div class="erm-header" style="margin-bottom: 20px;">
-                Block Enterprise Risk Management Issue Management Program
-                <div style="font-size: 0.7em; margin-top: 10px; font-weight: normal;">Overarching Enterprise Guidance & Requirements</div>
             </div>
             
             <div class="arrow-down">⬇</div>
@@ -423,7 +505,7 @@
             <div style="background: #f9f9f9; border: 2px solid #000000; padding: 25px; margin-bottom: 30px;">
                 <h3 style="text-align: center; color: #000000; margin-bottom: 10px; font-size: 1.3em; text-transform: uppercase; letter-spacing: 0.5px;">CIMO Framework</h3>
                 <p style="text-align: center; color: #333333; font-size: 0.95em;">Compliance Issue Management Oversight</p>
-                <p style="text-align: center; color: #666666; font-size: 0.85em; margin-top: 5px;">Enhanced governance layer for compliance-impacting issues</p>
+                <p style="text-align: center; color: #666666; font-size: 0.85em; margin-top: 5px;">Comprehensive framework for oversight of compliance remediation activities</p>
             </div>
             
             <div class="arrow-down">⬇</div>
@@ -519,69 +601,178 @@
                 </div>
                 
                 <p style="text-align: center; color: #666666; font-size: 0.85em; margin-top: 20px; font-style: italic;">
-                    Components are applied differentially based on issue track assignment
+                    All 8 Core components apply to all compliance issues. Application is different based on track assignment.
                 </p>
             </div>
         </div>
         
         <!-- Process Flow -->
         <div class="process-flow">
-            <h2 class="diagram-title">Issue Management Process Flow</h2>
+            <h2 class="diagram-title">CIMO Framework Issue Lifecycle</h2>
             
             <div class="flow-container">
                 <div class="flow-step">
                     <div class="flow-step-number">1</div>
-                    <strong>Issue Identification</strong>
+                    <strong style="font-size: 0.9em;">Issue Identification</strong>
                     <br>
-                    <small>Through various sources</small>
+                    <small style="font-size: 0.8em;">Through various sources</small>
                 </div>
                 
                 <div class="flow-arrow">→</div>
                 
-                <div class="flow-step">
+                <div class="flow-step-diamond">
                     <div class="flow-step-number">2</div>
-                    <strong>Compliance Impact Assessment</strong>
-                    <br>
-                    <small>Identify compliance-impacting issues</small>
+                    <div class="flow-step-diamond-content">
+                        <strong>Compliance Impact Assessment</strong>
+                        <br>
+                        <small>Identify compliance-impacting issues</small>
+                    </div>
                 </div>
                 
                 <div class="flow-arrow">→</div>
                 
-                <div class="flow-step">
+                <div class="flow-step-diamond">
                     <div class="flow-step-number">3</div>
-                    <strong>Track Assignment</strong>
-                    <br>
-                    <small>Sort into Track 1, 2, or 3</small>
+                    <div class="flow-step-diamond-content">
+                        <strong>Track<br>Assignment</strong>
+                        <br>
+                        <small>Sort into Track 1, 2, or 3</small>
+                    </div>
                 </div>
                 
                 <div class="flow-arrow">→</div>
                 
                 <div class="flow-step">
                     <div class="flow-step-number">4</div>
-                    <strong>Ongoing Management</strong>
+                    <strong style="font-size: 0.9em;">Ongoing Management</strong>
                     <br>
-                    <small>Apply track-specific governance</small>
+                    <small style="font-size: 0.8em;">Apply track-specific governance</small>
                 </div>
                 
                 <div class="flow-arrow">→</div>
                 
                 <div class="flow-step">
                     <div class="flow-step-number">5</div>
-                    <strong>Validation & Closure</strong>
+                    <strong style="font-size: 0.9em;">Validation & Closure</strong>
                     <br>
-                    <small>Track-appropriate review</small>
+                    <small style="font-size: 0.8em;">Track-appropriate review</small>
                 </div>
             </div>
         </div>
         
         <!-- Level 4: Three Tracks -->
         <div class="framework-diagram">
-            <h2 class="diagram-title">Three-Track Governance Model</h2>
+            <h2 class="diagram-title">CIMO Framework: Three Tracks</h2>
+            
+            <!-- Hierarchical Track Diagram -->
+            <div style="padding: 40px 20px; background: white; position: relative;">
+                <!-- Top Level: Block Issue Management Program -->
+                <div style="display: flex; justify-content: center; margin-bottom: 30px;">
+                    <div style="background: #2c2c2c; color: white; padding: 20px 40px; text-align: center; font-weight: 600; font-size: 1.1em; letter-spacing: 0.5px; text-transform: uppercase; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                        Block Issue<br>Management Program
+                    </div>
+                </div>
+                
+                <!-- Connecting Lines Container -->
+                <div style="position: relative; height: 50px; margin-bottom: 0;">
+                    <!-- Center vertical line from Block Issue Management -->
+                    <div style="position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 25px; background: #333; top: 0;"></div>
+                    
+                    <!-- Horizontal line -->
+                    <div style="position: absolute; left: 17%; right: 17%; height: 2px; background: #333; top: 25px;"></div>
+                    
+                    <!-- Three vertical lines to tracks -->
+                    <div style="position: absolute; left: 17%; width: 2px; height: 25px; background: #333; top: 25px;"></div>
+                    <div style="position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 25px; background: #333; top: 25px;"></div>
+                    <div style="position: absolute; right: 17%; width: 2px; height: 25px; background: #333; top: 25px;"></div>
+                </div>
+                
+                <!-- Three Tracks -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 20px;">
+                    <!-- Track 1 -->
+                    <div style="position: relative;">
+                        <div style="background: #4a4a4a; color: white; padding: 15px; text-align: center;">
+                            <div style="color: #ff8c66; font-weight: 600; text-decoration: underline; margin-bottom: 10px; font-size: 1.1em;">
+                                TRACK 1 - Priority
+                            </div>
+                            <div style="font-size: 1em;">
+                                Priority Governance
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Track 2 -->
+                    <div style="position: relative;">
+                        <div style="background: #4a4a4a; color: white; padding: 15px; text-align: center;">
+                            <div style="color: #ffcc66; font-weight: 600; text-decoration: underline; margin-bottom: 10px; font-size: 1.1em;">
+                                TRACK 2 - Heightened
+                            </div>
+                            <div style="font-size: 1em;">
+                                Heightened Governance
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Track 3 -->
+                    <div style="position: relative;">
+                        <div style="background: #4a4a4a; color: white; padding: 15px; text-align: center;">
+                            <div style="color: #90ee90; font-weight: 600; text-decoration: underline; margin-bottom: 10px; font-size: 1.1em;">
+                                TRACK 3 - Standard
+                            </div>
+                            <div style="font-size: 1em;">
+                                Standard Governance
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Track 1 Split Container -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                    <!-- Track 1 column with split -->
+                    <div style="position: relative;">
+                        <!-- Connecting lines for Track 1 split -->
+                        <div style="position: relative; height: 40px; margin-bottom: 0;">
+                            <!-- Center line down from Track 1 -->
+                            <div style="position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 20px; background: #333;"></div>
+                            <!-- Horizontal split line - adjusted to prevent overhang -->
+                            <div style="position: absolute; left: 27%; right: 27%; height: 2px; background: #333; top: 20px;"></div>
+                            <!-- Two lines down to SSOM boxes -->
+                            <div style="position: absolute; left: 27%; width: 2px; height: 20px; background: #333; top: 20px;"></div>
+                            <div style="position: absolute; right: 27%; width: 2px; height: 20px; background: #333; top: 20px;"></div>
+                        </div>
+                        
+                        <!-- SSOM and Non-SSOM boxes -->
+                        <div style="display: flex; gap: 15px;">
+                            <div style="background: #5a5a5a; color: white; padding: 15px 10px; text-align: center; flex: 1;">
+                                <div style="font-size: 1em; font-weight: 500;">SSOM</div>
+                                <div style="font-size: 0.85em; font-style: italic; margin-top: 5px;">(Existing)</div>
+                            </div>
+                            
+                            <div style="background: #5a5a5a; color: white; padding: 15px 10px; text-align: center; flex: 1;">
+                                <div style="font-size: 1em; font-weight: 500; line-height: 1.2;">Non-SSOM<br>Regulatory<br>Requests</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Track 1 Note - centered under Track 1 only -->
+                        <div style="margin-top: 20px; padding: 12px 15px; background: white; border: 1px solid #ff8c66; border-left: 3px solid #ff8c66; position: relative;">
+                            <p style="margin: 0; font-size: 0.85em; color: #333; text-align: center; line-height: 1.4;">
+                                <strong style="color: #ff8c66;">Track 1 – Priority</strong><br>
+                                Split between settlements-related issues<br>and non-settlements related issues
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Empty columns for Track 2 and 3 -->
+                    <div></div>
+                    <div></div>
+                </div>
+                
+            </div>
             
             <div style="background: #f9f9f9; border: 1px solid #e0e0e0; padding: 25px;">
                 <div class="tracks-container">
                     <div class="track track-1">
-                        <div class="track-header">Track 1: Priority</div>
+                        <div class="track-header">Track 1: <span style="color: #dc3545;">Priority</span></div>
                         <div class="track-content">
                             <div style="font-size: 0.9em;">
                                 <strong>Criteria:</strong><br/>
@@ -592,7 +783,7 @@
                     </div>
                     
                     <div class="track track-2">
-                        <div class="track-header">Track 2: Heightened</div>
+                        <div class="track-header">Track 2: <span style="color: #ffc107;">Heightened</span></div>
                         <div class="track-content">
                             <div style="font-size: 0.9em;">
                                 <strong>Criteria:</strong><br/>
@@ -604,7 +795,7 @@
                     </div>
                     
                     <div class="track track-3">
-                        <div class="track-header">Track 3: Standard</div>
+                        <div class="track-header">Track 3: <span style="color: #28a745;">Standard</span></div>
                         <div class="track-content">
                             <div style="font-size: 0.9em;">
                                 <strong>Criteria:</strong><br/>
@@ -613,7 +804,27 @@
                         </div>
                     </div>
                 </div>
+                
+                <div style="margin-top: 30px; padding: 25px; background: white; border: 2px solid #000000; position: relative;">
+                    <div style="position: absolute; top: -12px; left: 30px; background: white; padding: 0 10px;">
+                        <span style="font-weight: 600; text-transform: uppercase; font-size: 0.9em; letter-spacing: 0.5px;">Key Principles</span>
+                    </div>
+                    
+                    <div style="margin-top: 10px;">
+                        <p style="margin-bottom: 15px; font-size: 1em; font-weight: 600; color: #000000;">
+                            Regardless of track, all compliance issues:
+                        </p>
+                        <div style="margin-left: 20px; margin-bottom: 20px; font-size: 0.95em; color: #333333;">
+                            <div style="margin-bottom: 8px;"><span style="color: #28a745; font-size: 1.2em;">✓</span> Follow Block's Enterprise Issue Management Program</div>
+                            <div><span style="color: #28a745; font-size: 1.2em;">✓</span> Receive CIMO Standard Governance (8 core components to varying degrees)</div>
+                        </div>
+                        <p style="margin-bottom: 0; font-size: 1em; font-weight: 600; color: #000000; padding-top: 15px; border-top: 1px solid #e0e0e0;">
+                            The track determines any level of added oversight an issue receives based on risk
+                        </p>
+                    </div>
+                </div>
             </div>
+        </div>
         
 
         <!-- Component Application Matrix -->
@@ -623,10 +834,15 @@
             <table>
                 <thead>
                     <tr>
-                        <th style="width: 40%;">CIMO Component</th>
-                        <th style="width: 20%;">Priority (Track 1)</th>
-                        <th style="width: 20%;">Heightened (Track 2)</th>
-                        <th style="width: 20%;">Standard (Track 3)</th>
+                        <th rowspan="2" style="width: 40%; vertical-align: middle;">CIMO Component</th>
+                        <th style="width: 20%; text-align: center;">Track 1</th>
+                        <th style="width: 20%; text-align: center;">Track 2</th>
+                        <th style="width: 20%; text-align: center;">Track 3</th>
+                    </tr>
+                    <tr>
+                        <th style="text-align: center; font-size: 0.85em; font-weight: normal; background: #333333; color: #dc3545;">Priority</th>
+                        <th style="text-align: center; font-size: 0.85em; font-weight: normal; background: #333333; color: #ffc107;">Heightened</th>
+                        <th style="text-align: center; font-size: 0.85em; font-weight: normal; background: #333333; color: #28a745;">Standard</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -670,11 +886,11 @@
                         <td><strong>7. In-Line QA</strong><br><small style="color: #718096;">Intake tollgate, action plans, validation, pre-validation</small></td>
                         <td class="track-1-cell" style="text-align: center;">✓</td>
                         <td class="track-2-cell" style="text-align: center; color: #f39c12;">~</td>
-                        <td class="track-3-cell" style="text-align: center; color: #95a5a6;">✗</td>
+                        <td class="track-3-cell" style="text-align: center; color: #f39c12;">~</td>
                     </tr>
                     <tr>
                         <td><strong>8. Quality Control</strong><br><small style="color: #718096;">Recurring sampling: issues, RCAs, action plans, closures</small></td>
-                        <td class="track-1-cell" style="text-align: center; color: #95a5a6;">✗</td>
+                        <td class="track-1-cell" style="text-align: center;">✓</td>
                         <td class="track-2-cell" style="text-align: center;">✓</td>
                         <td class="track-3-cell" style="text-align: center; color: #f39c12;">~</td>
                     </tr>
