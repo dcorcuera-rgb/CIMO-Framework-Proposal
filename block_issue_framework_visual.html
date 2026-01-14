@@ -743,13 +743,13 @@
                         
                         <!-- SSOM and Non-SSOM boxes -->
                         <div style="display: flex; gap: 15px;">
-                            <div style="background: #5a5a5a; color: white; padding: 15px 10px; text-align: center; flex: 1;">
+                            <div style="background: #808080; color: white; padding: 15px 10px; text-align: center; flex: 1;">
                                 <div style="font-size: 1em; font-weight: 500;">SSOM</div>
                                 <div style="font-size: 0.85em; font-style: italic; margin-top: 5px;">(Existing)</div>
                             </div>
                             
                             <div style="background: #5a5a5a; color: white; padding: 15px 10px; text-align: center; flex: 1;">
-                                <div style="font-size: 1em; font-weight: 500; line-height: 1.2;">Non-SSOM<br>Regulatory<br>Requests</div>
+                                <div style="font-size: 1em; font-weight: 500; line-height: 1.2; color: #ff8c66;">Non-SSOM<br>Regulatory<br>Requests</div>
                             </div>
                         </div>
                         
@@ -883,7 +883,7 @@
                         <td class="track-3-cell" style="text-align: center;">✓</td>
                     </tr>
                     <tr>
-                        <td><strong>7. In-Line QA</strong><br><small style="color: #718096;">Intake tollgate, action plans, validation, pre-validation</small></td>
+                        <td><strong>7. In-Line Quality Assurance</strong><br><small style="color: #718096;">Tollgate Processes for issue intake, action plan creation, and pre-validation (action plan level)</small></td>
                         <td class="track-1-cell" style="text-align: center;">✓</td>
                         <td class="track-2-cell" style="text-align: center; color: #f39c12;">~</td>
                         <td class="track-3-cell" style="text-align: center; color: #f39c12;">~</td>
@@ -910,6 +910,191 @@
                     <span style="color: #cccccc; font-size: 1.2em; font-weight: bold;">✗</span>
                     <span style="color: #666666; font-size: 0.9em;">Not Applied</span>
                 </div>
+            </div>
+        </div>
+
+        <!-- Example Issues Lifecycle Comparison -->
+        <div class="framework-diagram" style="margin-top: 40px;">
+            <h2 class="diagram-title">CIMO Framework Application Examples</h2>
+            
+            <!-- Example Scenarios Introduction -->
+            <div style="background: #f9f9f9; padding: 30px; margin-bottom: 30px;">
+                <h3 style="text-align: center; color: #000000; margin-bottom: 25px; font-size: 1.3em;">Four Example Issue Scenarios</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <!-- Example 1: Regulatory SSOM -->
+                    <div style="background: white; border: 2px solid #000000; border-left: 8px solid #808080; padding: 20px;">
+                        <div style="background: #808080; color: white; padding: 4px 12px; display: inline-block; font-weight: bold; font-size: 0.8em; margin-bottom: 10px;">TRACK 1 - SSOM</div>
+                        <div style="font-weight: 600; color: #808080; margin-bottom: 10px;">Example 1: Regulatory-Identified (SSOM)</div>
+                        <div style="font-size: 0.85em; color: #666666; line-height: 1.5;">
+                            Regulatory-identified issue managed under SSOM framework.
+                        </div>
+                    </div>
+                    
+                    <!-- Example 2: High-rated Track 1 -->
+                    <div style="background: white; border: 2px solid #000000; border-left: 8px solid #dc3545; padding: 20px;">
+                        <div style="background: #dc3545; color: white; padding: 4px 12px; display: inline-block; font-weight: bold; font-size: 0.8em; margin-bottom: 10px;">TRACK 1</div>
+                        <div style="font-weight: 600; color: #dc3545; margin-bottom: 10px;">Example 2: High-Rated Issue</div>
+                        <div style="font-size: 0.85em; color: #666666; line-height: 1.5;">
+                            High-severity compliance issue requiring priority governance and enhanced oversight.
+                        </div>
+                    </div>
+                    
+                    <!-- Example 3: Customer Impacting Track 2 -->
+                    <div style="background: white; border: 2px solid #000000; border-left: 8px solid #ffc107; padding: 20px;">
+                        <div style="background: #ffc107; color: #000000; padding: 4px 12px; display: inline-block; font-weight: bold; font-size: 0.8em; margin-bottom: 10px;">TRACK 2</div>
+                        <div style="font-weight: 600; color: #ffc107; margin-bottom: 10px;">Example 3: Customer-Impacting</div>
+                        <div style="font-size: 0.85em; color: #666666; line-height: 1.5;">
+                            Customer-impacting issue with engineering dependencies requiring heightened governance and enhanced coordination.
+                        </div>
+                    </div>
+                    
+                    <!-- Example 4: Low-rated Track 3 -->
+                    <div style="background: white; border: 2px solid #000000; border-left: 8px solid #28a745; padding: 20px;">
+                        <div style="background: #28a745; color: white; padding: 4px 12px; display: inline-block; font-weight: bold; font-size: 0.8em; margin-bottom: 10px;">TRACK 3</div>
+                        <div style="font-weight: 600; color: #28a745; margin-bottom: 10px;">Example 4: Low-Rated Issue</div>
+                        <div style="font-size: 0.85em; color: #666666; line-height: 1.5;">
+                            Low-severity compliance issue following standard governance processes.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Lifecycle Comparison Table -->
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <thead>
+                        <tr>
+                            <th style="background: #000000; color: white; padding: 15px; text-align: left; font-weight: 500; text-transform: uppercase; font-size: 0.9em; letter-spacing: 0.5px; min-width: 250px;">Lifecycle Phase</th>
+                            <th style="background: #000000; color: white; padding: 15px; text-align: center; font-weight: 500; font-size: 0.85em;">Example 1<br><small style="font-weight: normal;">Regulatory (SSOM)</small></th>
+                            <th style="background: #000000; color: white; padding: 15px; text-align: center; font-weight: 500; font-size: 0.85em;">Example 2<br><small style="font-weight: normal;">High-Rated</small></th>
+                            <th style="background: #000000; color: white; padding: 15px; text-align: center; font-weight: 500; font-size: 0.85em;">Example 3<br><small style="font-weight: normal;">Customer-Impacting</small></th>
+                            <th style="background: #000000; color: white; padding: 15px; text-align: center; font-weight: 500; font-size: 0.85em;">Example 4<br><small style="font-weight: normal;">Low-Rated</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Phase 1: Issue Identification -->
+                        <tr>
+                            <td colspan="5" style="background: #333333; color: white; padding: 12px 15px; text-align: center; font-weight: 600; text-transform: uppercase; font-size: 0.85em;">Phase 1: Issue Identification & Intake</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; font-weight: 500;">Issue Identification</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; background: #d3d3d3; color: #000000;">FTI</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #dc3545;">CIMO Approval Required</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #ffc107;">CIMO Approval Required<br><small style="font-weight: normal; font-size: 0.8em;">(Self-Identified)</small></td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #28a745;">Per IM Program</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; font-weight: 500;">Issue Owner & Approver Assignment</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; background: #d3d3d3; color: #000000;">SSOM Identified</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #dc3545;">CIMO Approval Required</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #ffc107;">CIMO Approval Required<br><small style="font-weight: normal; font-size: 0.8em;">(Self-Identified)</small></td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #28a745;">Per IM Program</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; font-weight: 500;">Root Cause Analysis</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; background: #d3d3d3; color: #000000;">SSOM Managed</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #dc3545;">CIMO Approval Required</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #28a745;">Per IM Program</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #28a745;">Per IM Program</td>
+                        </tr>
+                        
+                        <!-- Phase 2: Action Planning -->
+                        <tr>
+                            <td colspan="5" style="background: #333333; color: white; padding: 12px 15px; text-align: center; font-weight: 600; text-transform: uppercase; font-size: 0.85em;">Phase 2: Action Plan Development</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; font-weight: 500;">Action Plan Development</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; background: #d3d3d3; color: #000000;">MAP Challenge</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #dc3545;">CIMO Approval Required</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #ffc107;">CIMO Engagement Required<br><small style="font-weight: normal; font-size: 0.8em;">(Engineering Dependency)</small></td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #28a745;">Per IM Program</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; font-weight: 500;">Action Plan Approval</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; background: #d3d3d3; color: #000000;">SSOM Leadership</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #28a745;">Per IM Program</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #28a745;">Per IM Program</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #28a745;">Per IM Program</td>
+                        </tr>
+                        
+                        <!-- Phase 3: Ongoing Management -->
+                        <tr>
+                            <td colspan="5" style="background: #333333; color: white; padding: 12px 15px; text-align: center; font-weight: 600; text-transform: uppercase; font-size: 0.85em;">Phase 3: Ongoing Management & Monitoring</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; font-weight: 500;">Remediation Tracking (30/60/90)</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; background: #d3d3d3; color: #000000;">SSOM PMO</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #28a745;">CIMO</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #28a745;">CIMO</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #28a745;">CIMO</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; font-weight: 500;">Status Reporting</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; background: #d3d3d3; color: #000000;">Weekly + CMC</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #28a745;">CIMO</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #28a745;">CIMO</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #28a745;">CIMO</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; font-weight: 500;">Change Management</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; background: #d3d3d3; color: #000000;">SSOM Tollgate</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #dc3545;">CIMO Approval Required</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #ffc107;">CIMO Approval Required</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #28a745;">Extension/Risk Acceptance Requests</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; font-weight: 500;">Escalation Pathways</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; background: #d3d3d3; color: #000000;">SSOM and CMC</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #dc3545;">Priority Escalation Thresholds</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #ffc107;">Enhanced Escalation Thresholds</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #28a745;">Standard Escalation Thresholds</td>
+                        </tr>
+                        
+                        <!-- Phase 4: Validation & Closure -->
+                        <tr>
+                            <td colspan="5" style="background: #333333; color: white; padding: 12px 15px; text-align: center; font-weight: 600; text-transform: uppercase; font-size: 0.85em;">Phase 4: Validation & Closure</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; font-weight: 500;">Pre-Validation (Action Plan)</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; background: #d3d3d3; color: #000000;">KPMG + IA</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #dc3545;">CIMO Approval Required</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #ffc107;">CIMO Approval Required<br><small style="font-weight: normal; font-size: 0.8em;">(Repeat Issues)</small></td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #28a745;">CIMO QC Review</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; font-weight: 500;">Issue Validation</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; background: #d3d3d3; color: #000000;">FTI</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #28a745;">Per IM Program</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #28a745;">Per IM Program</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #28a745;">Per IM Program</td>
+                        </tr>
+                    </tbody>
+                    </tbody>
+                </table>
+                
+                <!-- Legend for color coding -->
+                <div style="display: flex; justify-content: center; gap: 40px; margin-top: 25px; padding: 20px; background: #f9f9f9; border: 1px solid #e0e0e0;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 20px; height: 20px; background: #d3d3d3; border: 1px solid #999;"></div>
+                        <span style="color: #666666; font-size: 0.9em; font-weight: 500;">SSOM</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 20px; height: 20px; background: #dc3545; border: 1px solid #999;"></div>
+                        <span style="color: #666666; font-size: 0.9em; font-weight: 500;">Priority</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 20px; height: 20px; background: #ffc107; border: 1px solid #999;"></div>
+                        <span style="color: #666666; font-size: 0.9em; font-weight: 500;">Enhanced</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 20px; height: 20px; background: #28a745; border: 1px solid #999;"></div>
+                        <span style="color: #666666; font-size: 0.9em; font-weight: 500;">Standard</span>
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
             </div>
         </div>
     </div>
