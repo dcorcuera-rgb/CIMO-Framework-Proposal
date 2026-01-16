@@ -40,6 +40,64 @@
             font-size: 1.1em;
         }
 
+        /* TL;DR Section */
+        .tldr-section {
+            background: #f9f9f9;
+            border: 3px solid #000000;
+            padding: 30px 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .tldr-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tldr-content {
+            color: #333333;
+            font-size: 1em;
+            line-height: 1.8;
+        }
+
+        .tldr-content p {
+            margin-bottom: 15px;
+        }
+
+        .tldr-content p:last-child {
+            margin-bottom: 0;
+            font-weight: 600;
+            font-style: italic;
+            color: #000000;
+            margin-top: 20px;
+        }
+
+        .tldr-content strong {
+            color: #000000;
+            font-weight: 700;
+        }
+
+        .tldr-subpoint {
+            display: block;
+            margin-left: 30px;
+            margin-top: 15px;
+            font-style: italic;
+            font-weight: 400;
+            color: #333333;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .tldr-subpoint::before {
+            content: "• ";
+            font-weight: 700;
+            margin-right: 8px;
+        }
+
         /* Section Title */
         .section-title {
             text-align: center;
@@ -344,7 +402,18 @@
     <div class="container">
         <!-- Header -->
         <h1>Issue Lifecycle Execution</h1>
-        <p class="subtitle">Non-SSOM Issue Management Responsibilities Matrix</p>
+
+        <!-- TL;DR Section -->
+        <div class="tldr-section">
+            <div class="tldr-title">TL;DR — Roles & Responsibilities</div>
+            <div class="tldr-content">
+                <p><strong>Issue Management DRIs</strong> own the execution of the issue lifecycle—they identify, document, remediate, and close issues and action plans, maintaining accountability from start to finish.</p>
+                <p><strong>Compliance Issue Management Oversight</strong> provides independent oversight and governance—we provide change management challenge (risk acceptance, extensions, closures for high-risk issues), track progress through 30/60/90 follow-ups, facilitate escalation forums, and ensure quality through reporting and QC activities.
+                    <span class="tldr-subpoint">For <strong>SSOM</strong>-managed issues, the SSOM governance framework defines oversight and execution responsibilities. CIMO's role is limited to providing issue insight through reporting and KRI tracking.</span>
+                </p>
+                <p>In short: IM DRIs execute and deliver; CIMO oversees and governs.</p>
+            </div>
+        </div>
 
         <!-- DRI Definitions -->
         <div class="dri-definitions">
@@ -519,7 +588,12 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td class="step-name">Issue Remediation Tracking</td>
+                        <td class="step-name">Track and Monitor Issue Status</td>
+                        <td><span class="responsibility im-dri">✓</span></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">30/60/90 Follow-Up</td>
                         <td></td>
                         <td><span class="responsibility cimo">✓</span></td>
                     </tr>
@@ -535,6 +609,11 @@
                     </tr>
                     <tr>
                         <td class="step-name">Escalate At-Risk Issues</td>
+                        <td><span class="responsibility im-dri">✓</span></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">Facilitate Escalation Forum</td>
                         <td></td>
                         <td><span class="responsibility cimo">✓</span></td>
                     </tr>
