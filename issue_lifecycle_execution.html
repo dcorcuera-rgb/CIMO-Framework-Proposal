@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issue Lifecycle Execution</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000000;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            color: #000000;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* DRI Definitions */
+        .dri-definitions {
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .dri-intro {
+            text-align: center;
+            color: #333333;
+            font-size: 1em;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .dri-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .dri-item {
+            background: white;
+            border: 2px solid #000000;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .dri-item:hover {
+            background: #f5f5f5;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .dri-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .dri-number {
+            background: #000000;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .dri-title {
+            font-weight: 600;
+            color: #000000;
+            font-size: 1.05em;
+        }
+
+        .dri-description {
+            color: #666666;
+            font-size: 0.9em;
+            line-height: 1.5;
+            padding-left: 40px;
+        }
+
+        /* Legend */
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95em;
+        }
+
+        .legend-box {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .legend-box.im-dri {
+            background: #000000;
+            color: white;
+        }
+
+        .legend-box.cimo {
+            background: white;
+            border: 2px solid #000000;
+            color: #000000;
+        }
+
+        /* Phase Container */
+        .phase {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .phase-header {
+            background: #000000;
+            color: white;
+            padding: 16px 24px;
+            font-weight: 500;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .phase-number {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 14px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        /* Steps Table */
+        .steps-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .steps-table th {
+            background: #f9f9f9;
+            padding: 14px 24px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #333333;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .steps-table th:nth-child(2),
+        .steps-table th:nth-child(3) {
+            text-align: center;
+            width: 140px;
+        }
+
+        .steps-table td {
+            padding: 16px 24px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.95em;
+            color: #333333;
+        }
+
+        .steps-table td:nth-child(2),
+        .steps-table td:nth-child(3) {
+            text-align: center;
+        }
+
+        .steps-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .steps-table tr:hover td {
+            background: #fafafa;
+        }
+
+        .step-name {
+            color: #000000;
+            font-weight: 400;
+        }
+
+        .conditional {
+            font-size: 0.8em;
+            color: #666666;
+            display: block;
+            margin-top: 6px;
+            font-style: italic;
+        }
+
+        /* Responsibility Indicators */
+        .responsibility {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .responsibility.im-dri {
+            background: #000000;
+            color: white;
+        }
+
+        .responsibility.cimo {
+            background: white;
+            border: 2px solid #000000;
+            color: #000000;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            color: #999999;
+            font-size: 0.85em;
+        }
+
+        .footer .block-logo {
+            font-weight: 600;
+            color: #000000;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .legend {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+            .dri-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-table th,
+            .steps-table td {
+                padding: 12px 16px;
+            }
+
+            .steps-table th:nth-child(2),
+            .steps-table th:nth-child(3),
+            .steps-table td:nth-child(2),
+            .steps-table td:nth-child(3) {
+                width: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <h1>Issue Lifecycle Execution</h1>
+        <p class="subtitle">Non-SSOM Issue Management Responsibilities Matrix</p>
+
+        <!-- DRI Definitions -->
+        <div class="dri-definitions">
+            <h2 class="section-title">Key DRI Definitions</h2>
+            <p class="dri-intro">For non-SSOM issues, the following are the key DRIs defined by the Issue Management Program:</p>
+            <div class="dri-grid">
+                <div class="dri-item">
+                    <div class="dri-header">
+                        <span class="dri-number">1</span>
+                        <span class="dri-title">Identifying Party</span>
+                    </div>
+                    <p class="dri-description">First to detect the issue; responsible for logging in Protecht or notifying the accountable function to do so.</p>
+                </div>
+                <div class="dri-item">
+                    <div class="dri-header">
+                        <span class="dri-number">2</span>
+                        <span class="dri-title">Issue Owner</span>
+                    </div>
+                    <p class="dri-description">Reflects area where root cause occurred; accountable for end-to-end issue remediation.</p>
+                </div>
+                <div class="dri-item">
+                    <div class="dri-header">
+                        <span class="dri-number">3</span>
+                        <span class="dri-title">Action Plan Owner</span>
+                    </div>
+                    <p class="dri-description">Responsible for executing specific remediation steps.</p>
+                </div>
+                <div class="dri-item">
+                    <div class="dri-header">
+                        <span class="dri-number">4</span>
+                        <span class="dri-title">Issue/Action Plan Approver</span>
+                    </div>
+                    <p class="dri-description">Provides independent oversight of issue/action plan execution; confirms remediation is complete and supporting evidence is sufficient for closure.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-box im-dri">✓</div>
+                <span><strong>IM DRIs</strong> — Issue Management Directly Responsible Individuals</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box cimo">✓</div>
+                <span><strong>CIMO</strong> — Compliance Issue Management Oversight</span>
+            </div>
+        </div>
+
+        <!-- Phase 1 -->
+        <div class="phase">
+            <div class="phase-header">
+                <span class="phase-number">Phase 1</span>
+                Issue Identification & Intake
+            </div>
+            <table class="steps-table">
+                <thead>
+                    <tr>
+                        <th>Lifecycle Step</th>
+                        <th>IM DRIs</th>
+                        <th>CIMO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="step-name">Identify Issue</td>
+                        <td><span class="responsibility im-dri">✓</span></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">Create Issue Record</td>
+                        <td><span class="responsibility im-dri">✓</span></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">Complete Issue Intake and Root Cause Analysis</td>
+                        <td><span class="responsibility im-dri">✓</span></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">
+                            Approve Issue Intake and Root Cause Analysis
+                            <span class="conditional">For non-SSOM Track 1 issues and self-identified Track 2 issues</span>
+                        </td>
+                        <td></td>
+                        <td><span class="responsibility cimo">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">Open Issue Record</td>
+                        <td><span class="responsibility im-dri">✓</span></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="phase">
+            <div class="phase-header">
+                <span class="phase-number">Phase 2</span>
+                Action Plan Development
+            </div>
+            <table class="steps-table">
+                <thead>
+                    <tr>
+                        <th>Lifecycle Step</th>
+                        <th>IM DRIs</th>
+                        <th>CIMO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="step-name">Submit Risk Acceptance Request</td>
+                        <td><span class="responsibility im-dri">✓</span></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">Approve Risk Acceptance Request</td>
+                        <td></td>
+                        <td><span class="responsibility cimo">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">Create Action Plans</td>
+                        <td><span class="responsibility im-dri">✓</span></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">
+                            Approve Action Plans
+                            <span class="conditional">For non-SSOM Track 1 and Track 2 issues with Eng dependency</span>
+                        </td>
+                        <td></td>
+                        <td><span class="responsibility cimo">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">Open Action Plan Record</td>
+                        <td><span class="responsibility im-dri">✓</span></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="phase">
+            <div class="phase-header">
+                <span class="phase-number">Phase 3</span>
+                Remediation Execution
+            </div>
+            <table class="steps-table">
+                <thead>
+                    <tr>
+                        <th>Lifecycle Step</th>
+                        <th>IM DRIs</th>
+                        <th>CIMO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="step-name">Execute Action Plan</td>
+                        <td><span class="responsibility im-dri">✓</span></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">Action Plan Tracking</td>
+                        <td></td>
+                        <td><span class="responsibility cimo">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">Log Issue Status Updates</td>
+                        <td><span class="responsibility im-dri">✓</span></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">Issue Remediation Tracking</td>
+                        <td></td>
+                        <td><span class="responsibility cimo">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">Submit Extension Request</td>
+                        <td><span class="responsibility im-dri">✓</span></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">Approve Extension Request</td>
+                        <td></td>
+                        <td><span class="responsibility cimo">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">Escalate At-Risk Issues</td>
+                        <td></td>
+                        <td><span class="responsibility cimo">✓</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Phase 4 -->
+        <div class="phase">
+            <div class="phase-header">
+                <span class="phase-number">Phase 4</span>
+                Validation & Closure
+            </div>
+            <table class="steps-table">
+                <thead>
+                    <tr>
+                        <th>Lifecycle Step</th>
+                        <th>IM DRIs</th>
+                        <th>CIMO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="step-name">Submit Action Plan Closure Supporting Evidence</td>
+                        <td><span class="responsibility im-dri">✓</span></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">Validate Action Plan</td>
+                        <td><span class="responsibility im-dri">✓</span></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">
+                            Approve Action Plan Closure
+                            <span class="conditional">For non-SSOM Track 1 and repeat Track 2 issues</span>
+                        </td>
+                        <td></td>
+                        <td><span class="responsibility cimo">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">Close Action Plan</td>
+                        <td><span class="responsibility im-dri">✓</span></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">Submit Issue for Closure</td>
+                        <td><span class="responsibility im-dri">✓</span></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">Validate and Close Issue</td>
+                        <td><span class="responsibility im-dri">✓</span></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Phase 5 -->
+        <div class="phase">
+            <div class="phase-header">
+                <span class="phase-number">Phase 5</span>
+                Ongoing Monitoring
+            </div>
+            <table class="steps-table">
+                <thead>
+                    <tr>
+                        <th>Lifecycle Step</th>
+                        <th>IM DRIs</th>
+                        <th>CIMO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="step-name">IM Reporting</td>
+                        <td></td>
+                        <td><span class="responsibility cimo">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">Monitor and Analyze IM KRIs</td>
+                        <td></td>
+                        <td><span class="responsibility cimo">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td class="step-name">Perform Issue and Action Plan QC</td>
+                        <td></td>
+                        <td><span class="responsibility cimo">✓</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</body>
+</html>
