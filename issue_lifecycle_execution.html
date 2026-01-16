@@ -281,6 +281,27 @@
             letter-spacing: 1px;
         }
 
+        /* Navigation Button */
+        .nav-button {
+            display: inline-block;
+            background: #000000;
+            color: white;
+            padding: 16px 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid #000000;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-button:hover {
+            background: white;
+            color: #000000;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             body {
@@ -605,6 +626,13 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+
+        <!-- Navigation Button -->
+        <div style="text-align: center; margin-top: 50px; padding: 30px 0;">
+            <a href="block_issue_framework_visual.html" class="nav-button">
+                ← Back to Framework Overview
+            </a>
         </div>
 
     </div>
